@@ -70,6 +70,11 @@ const portfolioImages = [
     'assets/images/p1.jpg',
     'assets/images/p2.jpg',
     'assets/images/p3.jpg',
+    'assets/images/p6.jpeg',
+    'assets/images/p7.jpeg',
+    'assets/images/p8.jpeg',
+    'assets/images/p9.jpeg',
+    'assets/images/p44.jpeg',
     'assets/images/hardikaphoto2.jpg',
     'assets/images/hardikaphoto3.jpg'
 ];
@@ -97,24 +102,103 @@ function loadPhotoGallery() {
     });
 }
 
+// Reels videos
+const reelsVideos = [
+    'assets/images/v0.mp4',
+    'assets/images/v1.mp4',
+    'assets/images/v2.mp4',
+    'assets/images/v3.mp4',
+    'assets/images/v4.mp4',
+    'assets/images/v5.mp4',
+    'assets/images/v6.mp4',
+    'assets/images/v7.mp4'
+];
+
 // Load reels gallery
 function loadReelsGallery() {
     const reelsGallery = document.querySelector('.reels-gallery');
     reelsGallery.innerHTML = '';
-    
-    // Create placeholder reels (in a real implementation, these would be actual video embeds)
-    for (let i = 0; i < 6; i++) {
+
+    reelsVideos.forEach((video, index) => {
         const reelItem = document.createElement('div');
         reelItem.className = 'reel-item';
         reelItem.innerHTML = `
-            <div class="reel-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <p>Makeup Reel ${i + 1}</p>
-                <small>Coming Soon</small>
+            <video
+                class="reel-video"
+                preload="metadata"
+                muted
+                loop
+                playsinline
+            >
+                <source src="${video}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="reel-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="reel-info">
+                    <p>Makeup Reel ${index + 1}</p>
+                </div>
             </div>
         `;
+
+        // Add click event to play/pause video
+        const videoElement = reelItem.querySelector('.reel-video');
+        const playButton = reelItem.querySelector('.play-button');
+        const overlay = reelItem.querySelector('.reel-overlay');
+
+        reelItem.addEventListener('click', () => {
+            if (videoElement.paused) {
+                // Pause all other videos
+                document.querySelectorAll('.reel-video').forEach(v => {
+                    if (v !== videoElement) {
+                        v.pause();
+                        v.parentElement.querySelector('.reel-overlay').style.opacity = '1';
+                        v.parentElement.querySelector('.play-button i').className = 'fas fa-play';
+                    }
+                });
+
+                // Play this video
+                videoElement.play();
+                overlay.style.opacity = '0';
+                playButton.querySelector('i').className = 'fas fa-pause';
+            } else {
+                // Pause this video
+                videoElement.pause();
+                overlay.style.opacity = '1';
+                playButton.querySelector('i').className = 'fas fa-play';
+            }
+        });
+
+        // Reset overlay when video ends
+        videoElement.addEventListener('ended', () => {
+            overlay.style.opacity = '1';
+            playButton.querySelector('i').className = 'fas fa-play';
+        });
+
+        // Handle video loading errors
+        videoElement.addEventListener('error', () => {
+            reelItem.innerHTML = `
+                <div class="reel-error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Video unavailable</p>
+                    <small>Reel ${index + 1}</small>
+                </div>
+            `;
+        });
+
+        // Add loading state
+        videoElement.addEventListener('loadstart', () => {
+            overlay.style.background = 'rgba(0, 0, 0, 0.6)';
+        });
+
+        videoElement.addEventListener('canplay', () => {
+            overlay.style.background = 'rgba(0, 0, 0, 0.4)';
+        });
+
         reelsGallery.appendChild(reelItem);
-    }
+    });
 }
 
 // Lightbox functionality
@@ -174,148 +258,30 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Contact form handling with data storage
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const contactData = {
-        id: Date.now().toString(),
-        timestamp: new Date().toISOString(),
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        service: formData.get('service'),
-        message: formData.get('message'),
-        status: 'new'
-    };
-
-    // Store data locally
-    storeContactData(contactData);
-
-    // Send to server if available
-    sendToServer(contactData);
-
-    // Create WhatsApp message
-    const whatsappMessage = `Hi Hardika! I'm interested in your services.
-
-Name: ${contactData.name}
-Email: ${contactData.email}
-Phone: ${contactData.phone}
-Service: ${contactData.service}
-Message: ${contactData.message}
-
-I found you through your website and YouTube channel @Hardika_makeover`;
-
-    const whatsappUrl = `https://wa.me/918169263774?text=${encodeURIComponent(whatsappMessage)}`;
-
-    // Show success message
-    showNotification('Message saved and prepared! Redirecting to WhatsApp...', 'success');
-
-    // Redirect to WhatsApp after a short delay
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-    }, 1500);
-
-    // Reset form
-    this.reset();
-});
-
-// Local Storage Functions
-function storeContactData(data) {
-    try {
-        // Get existing data
-        const existingData = JSON.parse(localStorage.getItem('hardika_contacts') || '[]');
-
-        // Add new data
-        existingData.push(data);
-
-        // Store back to localStorage
-        localStorage.setItem('hardika_contacts', JSON.stringify(existingData));
-
-        console.log('Contact data stored locally:', data);
-    } catch (error) {
-        console.error('Error storing contact data:', error);
-    }
+// Map functionality
+function initMap() {
+    // Map is loaded via iframe, no additional JavaScript needed
+    console.log('Map loaded successfully');
 }
 
-function getStoredContacts() {
-    try {
-        return JSON.parse(localStorage.getItem('hardika_contacts') || '[]');
-    } catch (error) {
-        console.error('Error retrieving contact data:', error);
-        return [];
-    }
-}
+// Enhanced contact buttons
+function enhanceContactButtons() {
+    const whatsappBtn = document.querySelector('.whatsapp-btn');
+    const callBtn = document.querySelector('.call-btn');
 
-function clearStoredContacts() {
-    localStorage.removeItem('hardika_contacts');
-    showNotification('All stored contacts cleared!', 'success');
-}
-
-// Send data to server
-async function sendToServer(data) {
-    try {
-        const response = await fetch('/api/contacts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function() {
+            // Track WhatsApp click
+            console.log('WhatsApp button clicked');
         });
-
-        if (response.ok) {
-            console.log('Data sent to server successfully');
-        } else {
-            console.log('Server not available, data stored locally only');
-        }
-    } catch (error) {
-        console.log('Server not available, data stored locally only');
     }
-}
 
-// Notification system
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-        <span>${message}</span>
-    `;
-    
-    // Add notification styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === 'success' ? 'linear-gradient(45deg, #28a745, #20c997)' : 'linear-gradient(45deg, var(--gold), var(--dark-gold))'};
-        color: var(--primary-black);
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 2000;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 600;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
+    if (callBtn) {
+        callBtn.addEventListener('click', function() {
+            // Track call button click
+            console.log('Call button clicked');
+        });
+    }
 }
 
 // Scroll to contact function
@@ -578,6 +544,10 @@ document.addEventListener('DOMContentLoaded', () => {
     addHoverPause();
     addKeyboardSupport();
     preloadImages();
+
+    // Initialize map and contact buttons
+    initMap();
+    enhanceContactButtons();
 
     // Add animation classes to elements
     const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .about-content, .contact-content');
