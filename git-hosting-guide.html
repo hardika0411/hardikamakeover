@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Push और Website Host करने का Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            line-height: 1.6;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #FFD700;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        h2 {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #FFF8DC;
+            margin-top: 25px;
+        }
+        .step {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD700;
+        }
+        .code {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        .warning {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4444;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #44ff44;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        .method {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        .url {
+            background: #1e1e1e;
+            color: #00aaff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Git Push और Website Host करने का Complete Guide</h1>
+        
+        <div class="success">
+            <h3>🎯 Goal: आपकी Hardika Makeover website को GitHub पर push करके live host करना</h3>
+            <p><strong>Result:</strong> आपकी website <span class="highlight">hardikamakeover.github.io</span> पर live हो जाएगी!</p>
+        </div>
+
+        <h2>📋 Method 1: Automated Script (सबसे आसान)</h2>
+        <div class="step">
+            <h3>Step 1: Script चलाएं</h3>
+            <ol>
+                <li><span class="highlight">push-to-git.bat</span> file पर double-click करें</li>
+                <li>अपना GitHub username और email enter करें</li>
+                <li>Repository URL enter करें</li>
+                <li>Script automatically सब कुछ setup कर देगी</li>
+            </ol>
+            <div class="warning">
+                <strong>⚠️ पहले Git install करना जरूरी है:</strong><br>
+                Download: <a href="https://git-scm.com/download/win" target="_blank" style="color: #FFD700;">https://git-scm.com/download/win</a>
+            </div>
+        </div>
+
+        <h2>🌐 Method 2: GitHub Website (बिना Command Line)</h2>
+        <div class="method">
+            <h3>Step 1: GitHub Repository बनाएं</h3>
+            <ol>
+                <li><a href="https://github.com" target="_blank" class="btn">GitHub.com पर जाएं</a></li>
+                <li>Account बनाएं या Login करें</li>
+                <li><span class="highlight">"New Repository"</span> पर click करें</li>
+                <li>Repository name: <span class="highlight">hardikamakeover.github.io</span></li>
+                <li><span class="highlight">Public</span> select करें</li>
+                <li><span class="highlight">"Create Repository"</span> click करें</li>
+            </ol>
+        </div>
+
+        <div class="method">
+            <h3>Step 2: Files Upload करें</h3>
+            <ol>
+                <li>Repository में <span class="highlight">"uploading an existing file"</span> click करें</li>
+                <li>सभी files को drag & drop करें:
+                    <ul>
+                        <li>index.html</li>
+                        <li>styles.css</li>
+                        <li>script.js</li>
+                        <li>image-crop-config.js</li>
+                        <li>assets/ folder (पूरा folder)</li>
+                    </ul>
+                </li>
+                <li>Commit message लिखें: <span class="highlight">"Add Hardika Makeover website"</span></li>
+                <li><span class="highlight">"Commit changes"</span> click करें</li>
+            </ol>
+        </div>
+
+        <div class="method">
+            <h3>Step 3: GitHub Pages Enable करें</h3>
+            <ol>
+                <li>Repository में <span class="highlight">"Settings"</span> tab पर click करें</li>
+                <li>Left sidebar में <span class="highlight">"Pages"</span> पर click करें</li>
+                <li>Source: <span class="highlight">"Deploy from a branch"</span></li>
+                <li>Branch: <span class="highlight">"main"</span></li>
+                <li><span class="highlight">"Save"</span> click करें</li>
+            </ol>
+        </div>
+
+        <h2>💻 Method 3: Command Line (Advanced)</h2>
+        <div class="method">
+            <h3>Commands:</h3>
+            <div class="code">
+# First time setup
+git init
+git add .
+git commit -m "Initial commit - Hardika Makeover website"
+git remote add origin https://github.com/USERNAME/hardikamakeover.github.io.git
+git push -u origin main
+            </div>
+            <p><strong>Note:</strong> USERNAME को अपने GitHub username से replace करें</p>
+        </div>
+
+        <h2>🎉 Success! Website Live हो गई</h2>
+        <div class="success">
+            <h3>आपकी website अब live है:</h3>
+            <div class="url">https://hardikamakeover.github.io</div>
+            <p><strong>Time:</strong> 5-10 minutes में live हो जाएगी</p>
+            
+            <h4>✅ Check करें:</h4>
+            <ul>
+                <li>Website खुल रही है</li>
+                <li>Images load हो रहे हैं</li>
+                <li>Slider काम कर रहा है</li>
+                <li>Mobile में responsive है</li>
+                <li>Contact form काम कर रहा है</li>
+            </ul>
+        </div>
+
+        <h2>🔄 Future Updates</h2>
+        <div class="step">
+            <h3>Website update करने के लिए:</h3>
+            <ol>
+                <li>Files में changes करें</li>
+                <li>फिर से <span class="highlight">push-to-git.bat</span> run करें</li>
+                <li>या GitHub website पर directly edit करें</li>
+            </ol>
+            <div class="code">
+# Command line से update
+git add .
+git commit -m "Updated website"
+git push
+            </div>
+        </div>
+
+        <h2>🌍 Custom Domain (Optional)</h2>
+        <div class="method">
+            <h3>hardikamakeover.com use करने के लिए:</h3>
+            <ol>
+                <li>Domain buy करें (GoDaddy/Namecheap से)</li>
+                <li>GitHub Settings → Pages में domain add करें</li>
+                <li>DNS settings update करें</li>
+            </ol>
+            <p><strong>Cost:</strong> ₹799/year domain के लिए</p>
+        </div>
+
+        <h2>🆘 Common Problems & Solutions</h2>
+        <div class="warning">
+            <h4>❌ Images नहीं दिख रहे:</h4>
+            <p><strong>Solution:</strong> assets/images/ folder properly upload हुआ है check करें</p>
+        </div>
+
+        <div class="warning">
+            <h4>❌ Slider काम नहीं कर रहा:</h4>
+            <p><strong>Solution:</strong> script.js और image-crop-config.js files upload हुई हैं check करें</p>
+        </div>
+
+        <div class="warning">
+            <h4>❌ 404 Error आ रहा:</h4>
+            <p><strong>Solution:</strong> 10 minutes wait करें, GitHub Pages को time लगता है</p>
+        </div>
+
+        <h2>📞 Help & Support</h2>
+        <div class="step">
+            <h4>अगर कोई problem आए:</h4>
+            <ul>
+                <li>GitHub Community Forum</li>
+                <li>YouTube: "GitHub Pages tutorial"</li>
+                <li>GitHub Documentation</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h2>🎊 Congratulations!</h2>
+            <p>आपकी <strong>Hardika Makeover</strong> website अब internet पर live है!</p>
+            <p>अब आप अपने clients को website link share कर सकते हैं।</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://github.com" target="_blank" class="btn">GitHub पर जाएं</a>
+                <a href="https://hardikamakeover.github.io" target="_blank" class="btn">Website देखें</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

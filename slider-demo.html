@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider Demo - Hardika Makeover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: var(--primary-black);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-title {
+            text-align: center;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-description {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .slider-demo {
+            margin-bottom: 3rem;
+        }
+        
+        .features-list {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+        
+        .features-list h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list i {
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">Image Slider Demo</h1>
+        <p class="demo-description">
+            This is a demonstration of the sliding image feature implemented for Hardika Makeover website.
+            The slider includes automatic slideshow, manual navigation, touch/swipe support, and keyboard controls.
+        </p>
+        
+        <div class="slider-demo">
+            <!-- Image Slider -->
+            <div class="image-slider">
+                <div class="slider-container">
+                    <div class="slide active">
+                        <img src="assets/images/p0.jpg" alt="Hardika Makeover - Portfolio 1" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p1.jpg" alt="Hardika Makeover - Portfolio 2" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p2.jpg" alt="Hardika Makeover - Portfolio 3" onerror="this.src='https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p3.jpg" alt="Hardika Makeover - Portfolio 4" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="slider-btn prev-slide" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn next-slide" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Dots Indicator -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-list">
+            <h3>Slider Features:</h3>
+            <ul>
+                <li><i class="fas fa-play"></i> Auto-play slideshow (changes every 5 seconds)</li>
+                <li><i class="fas fa-mouse-pointer"></i> Click navigation arrows to manually control slides</li>
+                <li><i class="fas fa-circle"></i> Click dots to jump to specific slides</li>
+                <li><i class="fas fa-mobile-alt"></i> Touch/swipe support for mobile devices</li>
+                <li><i class="fas fa-keyboard"></i> Keyboard navigation (Arrow keys, Spacebar, Escape)</li>
+                <li><i class="fas fa-pause"></i> Auto-pause when hovering over the slider</li>
+                <li><i class="fas fa-expand-arrows-alt"></i> Smooth transitions and animations</li>
+                <li><i class="fas fa-mobile-alt"></i> Fully responsive design</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
