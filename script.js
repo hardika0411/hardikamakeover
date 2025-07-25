@@ -625,7 +625,6 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         loader.style.opacity = '0';
         setTimeout(() => {
-            
             document.body.removeChild(loader);
         }, 500);
     }, 1500);
