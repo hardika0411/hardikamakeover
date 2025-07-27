@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropping Demo - Hardika Makeover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: var(--primary-black);
+            color: var(--white);
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-title {
+            text-align: center;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .crop-controls {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .crop-controls h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .crop-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .crop-btn {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .crop-btn:hover,
+        .crop-btn.active {
+            background: var(--gold);
+            color: var(--primary-black);
+        }
+        
+        .slider-demo {
+            margin-bottom: 3rem;
+        }
+        
+        .crop-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .crop-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .crop-example {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .crop-example img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crop-example h4 {
+            color: var(--gold);
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">Image Cropping Demo</h1>
+        
+        <div class="crop-controls">
+            <h3>Cropping Controls</h3>
+            <p>Click the buttons below to see different cropping effects on your slider images:</p>
+            
+            <div class="crop-buttons">
+                <button class="crop-btn active" onclick="applyCrop('crop-smart')">Smart Crop</button>
+                <button class="crop-btn" onclick="applyCrop('crop-face')">Face Focus</button>
+                <button class="crop-btn" onclick="applyCrop('crop-portrait')">Portrait</button>
+                <button class="crop-btn" onclick="applyCrop('crop-landscape')">Landscape</button>
+                <button class="crop-btn" onclick="applyCrop('crop-top')">Top Focus</button>
+                <button class="crop-btn" onclick="applyCrop('crop-bottom')">Bottom Focus</button>
+                <button class="crop-btn" onclick="applyCrop('crop-left')">Left Focus</button>
+                <button class="crop-btn" onclick="applyCrop('crop-right')">Right Focus</button>
+            </div>
+            
+            <div class="crop-buttons">
+                <button class="crop-btn" onclick="applyFit('cover')">Cover (Default)</button>
+                <button class="crop-btn" onclick="applyFit('contain')">Contain</button>
+                <button class="crop-btn" onclick="applyFit('fill')">Fill</button>
+                <button class="crop-btn" onclick="applyFit('scale-down')">Scale Down</button>
+            </div>
+        </div>
+        
+        <div class="slider-demo">
+            <!-- Image Slider -->
+            <div class="image-slider">
+                <div class="slider-container">
+                    <div class="slide active">
+                        <img src="assets/images/p0.jpg" alt="Portfolio 1" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p1.jpg" alt="Portfolio 2" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p2.jpg" alt="Portfolio 3" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                    <div class="slide">
+                        <img src="assets/images/p3.jpg" alt="Portfolio 4" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="slider-btn prev-slide" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn next-slide" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Dots Indicator -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="crop-info">
+            <h3 style="color: var(--gold);">Cropping Options Explained:</h3>
+            <ul>
+                <li><strong>Smart Crop:</strong> Focuses on the upper 25% of the image, ideal for portraits</li>
+                <li><strong>Face Focus:</strong> Centers on the upper 30% of the image for face shots</li>
+                <li><strong>Portrait:</strong> Optimized for portrait photography (upper 20%)</li>
+                <li><strong>Landscape:</strong> Standard center cropping for landscape images</li>
+                <li><strong>Directional Focus:</strong> Top, Bottom, Left, Right focus points</li>
+                <li><strong>Cover:</strong> Scales image to cover entire container (may crop)</li>
+                <li><strong>Contain:</strong> Scales image to fit entirely within container</li>
+                <li><strong>Fill:</strong> Stretches image to fill container exactly</li>
+                <li><strong>Scale Down:</strong> Same as contain but never scales up</li>
+            </ul>
+        </div>
+        
+        <div class="crop-examples">
+            <div class="crop-example">
+                <img src="assets/images/p0.jpg" class="crop-face" alt="Face Focus Example" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                <h4>Face Focus</h4>
+                <p>Best for close-up portraits</p>
+            </div>
+            <div class="crop-example">
+                <img src="assets/images/p1.jpg" class="crop-portrait" alt="Portrait Example" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                <h4>Portrait Crop</h4>
+                <p>Ideal for full portrait shots</p>
+            </div>
+            <div class="crop-example">
+                <img src="assets/images/p2.jpg" class="crop-smart" alt="Smart Crop Example" onerror="this.src='https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                <h4>Smart Crop</h4>
+                <p>Intelligent cropping for most images</p>
+            </div>
+            <div class="crop-example">
+                <img src="assets/images/p3.jpg" class="crop-landscape" alt="Landscape Example" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                <h4>Landscape</h4>
+                <p>Standard center cropping</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Cropping control functions
+        function applyCrop(cropClass) {
+            const images = document.querySelectorAll('.slide img');
+            const buttons = document.querySelectorAll('.crop-btn');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Remove all crop classes and apply new one
+            images.forEach(img => {
+                img.className = img.className.replace(/crop-\w+/g, '');
+                img.classList.add(cropClass);
+            });
+        }
+        
+        function applyFit(fitType) {
+            const images = document.querySelectorAll('.slide img');
+            const buttons = document.querySelectorAll('.crop-btn');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Apply object-fit style
+            images.forEach(img => {
+                img.style.objectFit = fitType === 'scale-down' ? 'scale-down' : fitType;
+                if (fitType === 'contain' || fitType === 'scale-down') {
+                    img.style.background = 'var(--primary-black)';
+                } else {
+                    img.style.background = 'transparent';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

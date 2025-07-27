@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardika Makeover - Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/hardikalogo.png">
+    <style>
+        :root {
+            --primary-black: #000000;
+            --gold: #FFD700;
+            --dark-gold: #B8860B;
+            --light-gold: #FFF8DC;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --text-gray: #666666;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, var(--primary-black) 0%, #1a1a1a 100%);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .admin-logo-img {
+            height: 45px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .admin-logo-img:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .admin-text {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .admin-nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-nav a:hover,
+        .admin-nav a.active {
+            background: var(--gold);
+            color: var(--primary-black);
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--primary-black);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--primary-black);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .contacts-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .table-header {
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold));
+            color: var(--primary-black);
+            padding: 1rem;
+            font-weight: bold;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 100px;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .contact-row {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 100px;
+            gap: 1rem;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-row:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .contact-row:last-child {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .status-new {
+            background: var(--info);
+            color: var(--white);
+        }
+
+        .status-contacted {
+            background: var(--warning);
+            color: var(--primary-black);
+        }
+
+        .status-completed {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .contact-actions button {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            margin: 5% auto;
+            padding: 2rem;
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            color: var(--white);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+        }
+
+        .close {
+            color: var(--gold);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--white);
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .detail-group {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .detail-value {
+            color: var(--white);
+            word-break: break-word;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gold);
+        }
+
+        .loading i {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .table-header,
+            .contact-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-logo {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .admin-logo-img {
+                height: 35px;
+                max-width: 120px;
+            }
+
+            .admin-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-logo">
+                <img src="assets/images/hardikalogo.png" alt="Hardika Makeover" class="admin-logo-img">
+                <span class="admin-text">Admin</span>
+            </div>
+            <nav class="admin-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-bar"></i> Dashboard
+                </a>
+                <a href="#contacts" class="nav-link" data-section="contacts">
+                    <i class="fas fa-users"></i> Contacts
+                </a>
+                <a href="#" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export
+                </a>
+                <a href="https://www.youtube.com/@Hardika_makeover" target="_blank">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+                <a href="/" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View Site
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="admin-section active">
+            <h2 class="section-title">Dashboard Overview</h2>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="totalContacts">-</div>
+                    <div class="stat-label">Total Contacts</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number" id="newContacts">-</div>
+                    <div class="stat-label">New Contacts</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <div class="stat-number" id="recentContacts">-</div>
+                    <div class="stat-label">This Week</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number" id="popularService">-</div>
+                    <div class="stat-label">Popular Service</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contacts" class="admin-section">
+            <h2 class="section-title">Contact Management</h2>
+            
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search contacts...">
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="new">New</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <select id="serviceFilter">
+                        <option value="">All Services</option>
+                        <option value="bridal">Bridal Makeup</option>
+                        <option value="engagement">Engagement</option>
+                        <option value="pre-wedding">Pre-Wedding</option>
+                        <option value="party">Party Makeup</option>
+                        <option value="event">Event Makeup</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <button class="btn btn-primary" onclick="refreshContacts()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="btn btn-danger" onclick="clearLocalStorage()">
+                        <i class="fas fa-trash"></i> Clear Local Data
+                    </button>
+                </div>
+            </div>
+
+            <div class="contacts-table">
+                <div class="table-header">
+                    <div>Name</div>
+                    <div>Email</div>
+                    <div>Service</div>
+                    <div>Date</div>
+                    <div>Status</div>
+                    <div>Actions</div>
+                </div>
+                
+                <div id="contactsList">
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>Loading contacts...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Details Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contact Details</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="contactDetails" class="contact-details">
+                <!-- Contact details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

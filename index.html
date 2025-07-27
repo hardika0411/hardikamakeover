@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardika Makeover - Professional Makeup Artist & Hairstylist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/hardikalogo.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/hardikalogo.png" alt="Hardika Makeover" class="logo-img">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Get a special look<br>on your special day<br>with <span class="gold-text">Hardika Makeover</span></h1>
+                <p>Professional makeup artist and hairstylist creating beautiful and flawless looks for any occasion</p>
+                <button class="cta-button" onclick="scrollToContact()">
+                    <i class="fas fa-calendar-alt"></i>
+                    Book Now
+                </button>
+            </div>
+            <div class="hero-image">
+                <!-- Image Slider -->
+                <div class="image-slider">
+                    <div class="slider-container">
+                        <div class="slide active">
+                            <img src="assets/images/p0.jpg" alt="Hardika Makeover - Portfolio 1" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                        </div>
+                        <div class="slide">
+                            <img src="assets/images/p1.jpg" alt="Hardika Makeover - Portfolio 2" class="crop-face" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                        </div>
+                        <div class="slide">
+                            <img src="assets/images/p2.jpg" alt="Hardika Makeover - Portfolio 3" class="crop-portrait" onerror="this.src='https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                        </div>
+                        <div class="slide">
+                            <img src="assets/images/p3.jpg" alt="Hardika Makeover - Portfolio 4" class="crop-smart" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80'">
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="slider-btn prev-slide" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-slide" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Dots Indicator -->
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/hardikaphoto2.jpg" alt="Hardika Dhobale - Professional Makeup Artist" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'">
+                    <div class="about-decoration"></div>
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">About</h2>
+                    <h3 class="gold-text">Hardika Dhobale</h3>
+                    <p>Meet Hardika Dhobale, a passionate and skilled professional makeup artist dedicated to enhancing your natural beauty. With years of experience and certified training, she transforms her clients' visions into stunning reality. Hardika specializes in bridal makeup, party looks, and special event styling, ensuring every client feels confident and beautiful on their special day.</p>
+                    <div class="credentials">
+                        <div class="credential-item">
+                            <i class="fas fa-certificate gold-text"></i>
+                            <span>Certified Professional Makeup Artist</span>
+                        </div>
+                        <div class="credential-item">
+                            <i class="fas fa-award gold-text"></i>
+                            <span>5+ Years Experience</span>
+                        </div>
+                        <div class="credential-item">
+                            <i class="fas fa-users gold-text"></i>
+                            <span>500+ Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Bridal Makeup</h3>
+                    <p>Complete bridal transformation with traditional and contemporary looks</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Engagement</h3>
+                    <p>Perfect engagement look to make your special moment memorable</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Pre-Wedding</h3>
+                    <p>Stunning pre-wedding shoot makeup for beautiful photographs</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Party Makeup</h3>
+                    <p>Glamorous party looks for any celebration or event</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Sider Makeup</h3>
+                    <p>Professional makeup for special occasions and ceremonies</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Baby Shower</h3>
+                    <p>Soft and elegant looks for your baby shower celebration</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <h3>Event Makeup</h3>
+                    <p>Professional makeup for corporate and social events</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <h3>Groom Makeup</h3>
+                    <p>Subtle and sophisticated grooming for the perfect groom look</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-tabs">
+                <button class="tab-button active" data-tab="photos">
+                    <i class="fas fa-images"></i>
+                    Photos
+                </button>
+                <button class="tab-button" data-tab="reels">
+                    <i class="fas fa-video"></i>
+                    Reels
+                </button>
+            </div>
+            
+            <div class="portfolio-content">
+                <div id="photos" class="tab-content active">
+                    <div class="photo-gallery">
+                        <!-- Photos will be loaded here -->
+                    </div>
+                </div>
+                <div id="reels" class="tab-content">
+                    <div class="reels-gallery">
+                        <!-- Reels will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Hardika did an amazing job on my wedding day! She understood exactly what I wanted and made me feel like a princess. Highly recommended!"</p>
+                    <div class="client-info">
+                        <h4>Priya Sharma</h4>
+                        <span>Bride</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Professional, punctual, and incredibly talented. My engagement photos turned out perfect thanks to Hardika's expertise!"</p>
+                    <div class="client-info">
+                        <h4>Anita Patel</h4>
+                        <span>Engagement</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Best makeup artist in town! She has a magical touch and knows how to enhance natural beauty. Will definitely book again!"</p>
+                    <div class="client-info">
+                        <h4>Meera Joshi</h4>
+                        <span>Party Makeup</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/918169263774">+91 8169263774</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Instagram</h4>
+                            <a href="https://instagram.com/hardika_makeover" target="_blank">@hardika_makeover</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:hardikamakeover@gmail.com">hardikamakeover@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-youtube"></i>
+                        <div>
+                            <h4>YouTube</h4>
+                            <a href="https://www.youtube.com/@Hardika_makeover" target="_blank">@Hardika_makeover</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d72.8777!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3MsKwNTInMzkuNyJF!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
+                            width="100%"
+                            height="400"
+                            style="border:0; border-radius: 15px;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="location-info">
+                        <h3>Visit Our Studio</h3>
+                        <div class="location-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Mumbai, Maharashtra, India</p>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>Mon - Sun: 9:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="cta-buttons">
+                            <a href="https://wa.me/918169263774" class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                Book Appointment
+                            </a>
+                            <a href="tel:+918169263774" class="call-btn">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/hardikalogo.png" alt="Hardika Makeover" class="footer-logo-img">
+                    <p>Creating beautiful looks for your special moments</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/hardika_makeover" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Hardika_makeover" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/918169263774" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hardika Makeover. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-nav">
+            <button class="prev-btn">&lt;</button>
+            <button class="next-btn">&gt;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="image-crop-config.js"></script>
+</body>
+</html>
