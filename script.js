@@ -75,6 +75,10 @@ const portfolioImages = [
     'assets/images/p8.jpeg',
     'assets/images/p9.jpeg',
     'assets/images/p44.jpeg',
+    'assets/images/p10.jpg',
+    'assets/images/p11.jpg',
+    'assets/images/p12.jpg',
+    'assets/images/p13.jpg',
     'assets/images/hardikaphoto2.jpg',
     'assets/images/hardikaphoto3.jpg'
 ];
